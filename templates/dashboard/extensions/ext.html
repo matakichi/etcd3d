@@ -1,0 +1,23 @@
+{% extends 'js/view_template.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block subtitle %}
+  **************.
+{% endblock %}
+
+{% load djng_tags %}
+{% block content %}
+<div class="row pt-3">
+  <div class="col-sm-6">
+    <div class="card" style="width: 20rem;">
+      <div class="card-img-top text-center mt-2"><button class="btn fab fa-qq" style="font-size:10rem;" ng-click="ctrl.showTraefik()"></button></div>
+      <div class="card-body">
+        <p class="card-text">Træfik is a modern HTTP reverse proxy and load balancer. Will set route to Traefik from here. defines routes from entrypoints to backends. Routes are created using requests fields (Host, Path, Headers...)</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_javascript %}
+{% endblock extra_javascript %}

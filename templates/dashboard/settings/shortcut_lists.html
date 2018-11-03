@@ -1,0 +1,50 @@
+{% load djng_tags %}
+{% angularjs %}
+<div id="shortcut-list" class="list-group" style="padding-top:8px;" xmlns="http://www.w3.org/1999/html">
+  <li class="list-group-item list-group-item-action text-xs-center align-items-center" ng-repeat="kv in ctrl.service.settings.shortcut" ng-click="" >
+    <div class="float-left"> <!-- TODO: elements floating in list-group-item do not applicable X( -->
+      <input type="text" class="plane" ng-disabled="!ctrl.confirm[kv.id]['edit']" ng-model="kv.name" tooltip-placement="right" uib-tooltip="Name"/>:<input type="text" class="plane" ng-disabled="!ctrl.confirm[kv.id]['edit']" ng-model="kv.path" tooltip-placement="right" uib-tooltip="Path"/>
+    </div>
+    <div class="float-right"> <!-- TODO: elements floating in list-group-item do not applicable X( -->
+      <button class="btn btn-xs btn-info" ng-click="ctrl.edit(kv)"><i class="fas" ng-class="{'fa-edit': !ctrl.confirm[kv.id]['edit'],'fa-check': ctrl.confirm[kv.id]['edit']}"></i></i></button>
+				<button class="btn btn-xs btn-danger" ng-class="{'btn-warning': !ctrl.confirm[kv.id]['check'],'btn-danger': ctrl.confirm[kv.id]['check']}" ng-click="ctrl.remove(kv.id)">
+					<i class="fas" ng-class="{'fa-trash': !ctrl.confirm[kv.id]['check'],'fa-check': ctrl.confirm[kv.id]['check']}"></i></button>
+    </div>
+  </li>
+</div>
+<div id="list-btn" class="float-right p-1">
+  <button class="btn btn-circle btn-xs btn-info" data-toggle="modal" data-target="#shortcutModal"><i class="fas fa-plus"></i></button>
+</div>
+<div class="modal fade" id="shortcutModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Shortcut</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <form name="shortcutModalForm">
+        <div class="modal-body">
+          <font class="text-danger">*</font><input type="text" ng-model="ctrl.add.name" placeholder="Name" required/>
+          <font class="text-danger">*</font><input type="text" ng-model="ctrl.add.path" placeholder="Path" required/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="shortcutModalForm.$invalid" ng-click="ctrl.addShortcut()">Commit</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+{% endangularjs %}
+<style>
+.plane:disabled {
+  border: 0px;
+  background-color: transparent;
+}
+#shortcut-list.list-group {
+  max-height: 520px;
+  margin-bottom: 8px;
+  overflow-y:scroll;
+  -webkit-overflow-scrolling: touch;
+}
+</style>

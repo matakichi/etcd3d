@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}etcd3{% endblock %}
+
+{% load djng_tags %}
+{% block content %}
+    {% block subtitle %}This is <em>etcd v3</em> <strong>Web dashboard</strong>.{% endblock %}
+		<div ng-view="container-view"></div>
+{% endblock %}
+{% block extra_javascript %}
+{% endblock extra_javascript %}

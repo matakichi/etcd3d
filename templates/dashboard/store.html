@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}
+    etcd3
+{% endblock %}
+
+{% load djng_tags %}
+{% block content %}
+<!--<div ng-app="e3d.store.app"> -->
+<!--  <div ng-controller='StoreKeysCtrl as ctrl'> -->
+    This is Store.
+    <div class="row">
+      <div class="col-sm-5">
+        {% include "dashboard/keys/show_lists.html"%}
+      </div>
+      <div ng-view="form" class="col-sm-6"></div>
+    </div>
+<!--  </div>-->
+<!--</div>-->
+{% endblock %}
+{% block extra_javascript %}
+<script src="{% static 'js/app/store.controller.js' %}"></script>
+{% endblock extra_javascript %}

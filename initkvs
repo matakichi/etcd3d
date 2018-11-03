@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+import os
+import sys
+from time import sleep
+
+HOSTNAME = 'etcd'
+
+
+OPTS = ['--force']
+
+MAKE_DIRS = {
+    'default': ['/'],
+    '--traefik': ['/', '/traefik', '/traefik/backends', '/traefik/frontends']
+}
+
+if __name__ == "__main__":
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "etcd3d.etcd3_dashboard.settings")
+
+    from etcd3d.utils import Etcd3Client
+
+    bl = lambda n,s: [(sys.stdout.write('\r'),
+                       sys.stdout.write(("[%-" + str(n) + "s] %d%%") % ('=' * i, (100/n)*i)),
+                       sys.stdout.flush(), sleep(s)) for i in range(n+1)]
+
+    etcd = Etcd3Client(host=HOSTNAME)
+    if '--force' not in sys.argv and (lambda x: etcd.is_dir(x[0], x[1].key) if x[0] else False)(etcd.get('/')):
+        bl(30, 0.01)
+        print('\nAlready exists. no need to change the directory. :)')
+    else:
+        print("Root('/') directory is missing..\n")
+
+        def mkdir(dirs):
+            for d in dirs:
+                print('make directory......  %s .....' % d)
+                etcd.mkdir(d)
+            bl(30, 0.2)
+            print('\nsuccess :)')
+
+        q = lambda m,d: (lambda a: mkdir(d) if a == 'y' else (print('Exit') if a == 'n' else q("Please type 'y' or 'n': ", d)))(input(m))
+
+        try:
+            for arg in sys.argv:
+                if arg in OPTS: continue
+                q('Initialize the directory. '
+                  'Are you sure you want to continue (y/n)?: ', MAKE_DIRS.get(arg, MAKE_DIRS['default']))
+        except KeyboardInterrupt:
+            print('you are not allowed to quit right now')
+            sys.exit(0)
+
+

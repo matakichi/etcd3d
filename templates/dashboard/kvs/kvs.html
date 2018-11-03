@@ -1,0 +1,22 @@
+{% extends 'js/view_template.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block subtitle %}
+  Reference the value of an key using search, and setting the value of a key.
+{% endblock %}
+
+{% load djng_tags %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-5">
+    {% include "dashboard/kvs/show_lists.html" %}
+  </div>
+  <div class="col-sm-5">
+    {% include "dashboard/kvs/details.html" %}
+  </div>
+</div>
+{% endblock %}
+{% block extra_javascript %}
+<!--<script src="{% static 'js/app/store.controller.js' %}"></script>-->
+{% endblock extra_javascript %}

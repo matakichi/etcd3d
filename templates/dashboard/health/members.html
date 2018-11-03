@@ -1,0 +1,26 @@
+{% load djng_tags %}
+{% angularjs %}
+<div class="card-deck">
+  <div class="card">
+    <div class="card-header">{{ ctrl.healthy.health.leader.name }} (leader)</div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex flex-wrap flex-sm-nowrap"><div class="p-2">Pear URLs:</div><div class="p-2"><strong>{{ ctrl.healthy.health.leader.peer_urls }}</strong></div></li>
+        <li class="list-group-item d-flex flex-wrap flex-sm-nowrap"><div class="p-2">Client URLs:</div><div class="p-2"><strong>{{ ctrl.healthy.health.leader.client_urls }}</strong></div></li>
+      </ul>
+    </div>
+  </div>
+  <div ng-repeat="member in ctrl.members.children">
+    <div class="card">
+      <div class="card-header">{{ member.name }} (follower)</div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex flex-wrap flex-sm-nowrap"><div class="p-1">Pear URLs:</div><div class="p-2"><strong>{{ member.peer_urls }}</strong></div></li>
+          <li class="list-group-item d-flex d-flex flex-wrap flex-sm-nowrap"><div class="p-1">Client URLs:</div><div class="p-2"><strong>{{ member.client_urls }}</strong></div></li>
+        </ul>
+      </div>
+      <div class="card-footer"><a href="#" class="btn btn-info">Promoted to leader.</a></div>
+    </div>
+  </div>
+</div>
+{% endangularjs %}

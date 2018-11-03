@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+django = "*"
+"django-bootstrap4" = "*"
+"etcd3" = "*"
+grpcio = "*"
+monotonic = "*"
+numpy = "*"
+protobuf = "*"
+pytz = "*"
+six = "*"
+tenacity = "*"
+django-angular = "*"
+django-cors-headers = "*"
+djangorestframework = "*"
+drf-nested-routers = "*"
+
+[requires]
+python_version = "3.7"

@@ -1,0 +1,33 @@
+{% load djng_tags %}
+{% angularjs %}
+<div ng-cloak>
+	<form name="storeForm" class="form-horizontal" ng-show="ctrl.service.currentKey">
+		<div class="container rounded border border-light">
+			<span ng-show="storeForm.input-key.$error.required">required key missing..</span>
+			<span ng-show="storeForm.input-data.$error.required">required key missing..</span>
+				<legend></legend>
+				<div class="form-group">
+					<label for="input-key" class="control-label"></label>
+					<div class="controls">
+						<div class="input-group">
+							<span class="input-group-text" style="min-width:20%;max-width:80%;overflow:hidden;" ng-bind="ctrl.currentKeyFil(30)"></span>
+							<input id="input-key" type="text" name="input-key" ng-model="ctrl.service.store.key" class="form-control"
+										 ng-disabled="!ctrl.isDir()" ng-required="ctrl.isDir()" ng-change="ctrl.onFieldChange()">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<textarea id="input-data" name="input-data" class="form-control" rows="4" ng-model="ctrl.service.store.data"
+										placeholder="Puts the given key into the store."
+										ng-disabled="!ctrl.editKeyMode" ng-change="ctrl.onFieldChange()"></textarea>
+				</div>
+				<button class="btn btn-default mb-2" ng-click="ctrl.cancel()">Cancel</button>
+					<button class="btn btn-primary mb-2" ng-click="ctrl.submit()" ng-disabled="storeForm.$invalid">{{ ctrl.submitMsg }}</button>
+				<span ng-show="!ctrl.isDir()">
+				</span>
+				<button class="btn mb-2 float-right" ng-class="{'btn-info': !ctrl.deletable,'btn-danger': ctrl.deletable}" ng-click="ctrl.remove()">
+					<i class="fas" ng-class="{'fa-trash': !ctrl.deletable,'fa-check': ctrl.deletable}"></i></button>
+			</div>
+	  </form>
+</div>
+{% endangularjs %}

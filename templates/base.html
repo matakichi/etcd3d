@@ -1,0 +1,101 @@
+{% extends 'bootstrap4/bootstrap4.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% load common %}
+{% block bootstrap4_extra_head %}
+{% include "common/statics.html" %}
+
+<script src="{% static 'js/app/app.route.js' %}"></script>
+<script src="{% static 'js/app/app.controller.js' %}"></script>
+<script src="{% static 'js/app/app.service.js' %}"></script>
+<script src="{% static 'js/app/setting.service.js' %}"></script>
+<script src="{% static 'js/app/store.service.js' %}"></script>
+<script src="{% static 'js/app/healthy.service.js' %}"></script>
+<script src="{% static 'js/app/store.controller.js' %}"></script>
+<script src="{% static 'js/app/setting.controller.js' %}"></script>
+<script src="{% static 'js/app/healthy.controller.js' %}"></script>
+<script src="{% static 'js/app/graph.controller.js' %}"></script>
+
+<script src="{% static 'js/app/app.js' %}"></script>
+
+{% angular_ext_statics %}
+
+<style>
+.btn-circle {
+width: 30px;
+height: 30px;
+text-align: center;
+padding: 6px 0;
+font-size: 12px;
+line-height: 1.428571429;
+border-radius: 15px;
+}
+.btn-circle.btn-lg {
+width: 50px;
+height: 50px;
+padding: 10px 16px;
+font-size: 18px;
+line-height: 1.33;
+border-radius: 25px;
+}
+.btn-circle.btn-xl {
+width: 70px;
+height: 70px;
+padding: 10px 16px;
+font-size: 24px;
+line-height: 1.33;
+border-radius: 35px;
+}
+
+.title-area {
+  padding: 4px 4px;
+}
+
+.animated.ng-enter,
+.animated.ng-leave,
+.animated.ng-move {
+  -webkit-transition: opacity 0.42s linear;
+  transition: opacity 0.42s linear;
+}
+.animated.ng-enter {
+  opacity: 0;
+}
+.animated.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.animated.ng-leave {
+  opacity: 1;
+}
+.animated.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.animated.ng-move {
+  opacity: .5;
+}
+.animated.ng-move.ng-move-active {
+  opacity: 1;
+}
+</style>
+{% app_fonts %}
+
+{% endblock %}
+
+{% load djng_tags %}
+{% block bootstrap4_content %}
+<div ng-app="e3d.app">
+  <div class="app" ng-controller="AppCtrl as app" ng-cloak>
+    {% include "common/navbar.html" %}
+		<div class="container">
+			<h1>{% block bootstrap4_title %}{% block title %}{% endblock %}{% endblock %}</h1>
+		  {% if messages %}{% autoescape off %}{% bootstrap_messages %}{% endautoescape %}{% endif %}
+		  {% include "alert.html"%}
+		  {% block content %}<div ng-view></div>{% endblock %}
+	  </div>
+  </div>
+  {% block extra_javascript %}{% endblock extra_javascript %}
+</div>
+{% autoescape off %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
+{% bootstrap_javascript jquery=True %}
+{% endautoescape %}
+{% endblock %}

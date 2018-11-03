@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+{% load bootstrap4 %}
+
+{% include "common/statics.html" %}
+
+{% load djng_tags %}
+{% angularjs %}
+<div ng-cloak>
+  <div class="modal-dialog modal-dialog-centered modal-lg m-0" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fab fa-qq" style="padding-right:6px;color:steelblue"></i>Create Proxy and load balancer member rules. </h4>
+        <button type="button" class="close" ng-click="modal.dismiss()">&times;</button>
+      </div>
+      <form name="traefikModalForm">
+        <div class="modal-body">
+          <div class="controls">
+            <h5><i class="fas fa-hdd" style="padding-right:4px"></i>Backends</h5>
+            <input style="width:38%" type="text" class="form-control input-normal" placeholder="Backend Name" ng-model="modal.backend_name">
+            <table class="table table-striped table-bordered table-condensed mt-1">
+              <thead>
+                <tr>
+                  <th>Server name</th>
+                  <th>URL</th>
+                  <th>Weight</th>
+                  <th class="border-white"></th>
+                </tr>
+              </thead>
+              <ng-form name="backends">
+                <tr ng-repeat="b in modal.backends" class="animated">
+                  <td width="38%"><input type="text" class="form-control input-normal" ng-model="b.server" required></td>
+                  <td width="38%"><input type="text" class="form-control input-normal" placeholder="e.g., https://192.168.1.1" ng-model="b.url" required></td>
+                  <td width="10%"><input type="number" class="form-control input-normal" ng-model="b.weight" required></td>
+                  <td width="14%" class="align-middle">
+                    <button ng-if="modal.backends.length>1" class="btn btn-circle btn-xs btn-danger" ng-click="modal.pullBackend($index)"><i class="fas fa-minus"></i></button>
+                    <button ng-if="modal.backends.length==$index+1" class="btn btn-circle btn-xs btn-info" ng-click="modal.appendBackend()"><i class="fas fa-plus"></i></button>
+                  </td>
+                </tr>
+              </ng-form>
+            </table>
+            </form>
+            <h5><i class="fas fa-globe" style="padding-right:4px"></i>Frontends</h5>
+            <input style="width:38%" type="text" class="form-control input-normal" placeholder="Frontend Name" ng-model="modal.frontend_name">
+            <table class="table table-striped table-bordered table-condensed mt-1">
+              <thead>
+                <tr>
+                  <th>Backend</th>
+                  <th>Route name</th>
+                  <th>Rule</th>
+                  <th class="border-white"></th>
+                </tr>
+              </thead>
+              <tr ng-repeat="f in modal.frontends" class="animated">
+                <td width="28%"><input type="text" class="form-control input-normal" placeholder="backend name" ng-model="f.backend"></td>
+                <td width="28%"><input type="text" class="form-control input-normal" ng-model="f.route"></td>
+                <td width="28%"><input type="text" class="form-control input-normal" placeholder="e.g., Host:www.hoge.com" ng-model="f.rule"></td>
+                <td width="14%" class="align-middle">
+                  <button ng-if="modal.frontends.length>1" class="btn btn-circle btn-xs btn-danger animated" ng-click="modal.pullFrontend($index)"><i class="fas fa-minus"></i></button>
+                  <button ng-if="modal.frontends.length==$index+1"class="btn btn-circle btn-xs btn-info animated" ng-click="modal.appendFrontend()"><i class="fas fa-plus"></i></button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          * new create or settings already exists, the setting will be overwritten..<br>
+          * If something lacking in the entered content, will be ignored!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" ng-click="modal.dismiss()">Cancel</button>
+          <button type="button" class="btn btn-primary" ng-click="modal.commit()">Commit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<style>
+.table td {
+  padding:0!important;margin:0!important;background:white;border-color:white;
+}
+.animated.ng-enter,
+.animated.ng-leave,
+.animated.ng-move {
+  -webkit-transition: opacity 0.42s linear;
+  transition: opacity 0.42s linear;
+}
+.animated.ng-enter {
+  opacity: 0;
+}
+.animated.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.animated.ng-leave {
+  opacity: 1;
+}
+.animated.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.animated.ng-move {
+  opacity: .5;
+}
+.animated.ng-move.ng-move-active {
+  opacity: 1;
+}
+</style>
+</html>
+{% endangularjs %}

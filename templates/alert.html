@@ -1,0 +1,7 @@
+{% load djng_tags %}
+{% angularjs %}
+<div class="alert-area">
+  <div uib-alert ng-repeat="alert in app.alerts" ng-class="'notify alert alert-' + (alert.type || 'info')" close="app.closeAlert($index)">{{ alert.msg }}</div>
+</div>
+{% endangularjs %}
+<style type="text/css">.alert-area{position:fixed;top:2%;left:auto;right:4%;z-index:1}.notify.ng-enter,.notify.ng-leave{-webkit-transition:.3s linear all;transition:.3s linear all}.notify.ng-enter,.notify.ng-leave.ng-leave-active{opacity:0}.notify.ng-enter.ng-enter-active,.notify.ng-leave{opacity:1}</style>

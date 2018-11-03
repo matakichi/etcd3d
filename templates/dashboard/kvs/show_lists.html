@@ -1,0 +1,57 @@
+{% load common %}
+{% load djng_tags %}
+{% angularjs %}
+<div ng-cloak id="kvs-list">
+  <form id="searchform" class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" id="searchbox" type="text" ng-model="ctrl.search" placeholder="key '/*'" aria-label="key">
+    <button class="btn btn-outline-success my-2 my-sm-0" title="Keyword Search" type="submit" ng-click="ctrl.doSearch(ctrl.search)">Search</button>
+    <button class="btn btn-info my-2 my-sm-0" uib-tooltip="Quick Search" data-toggle="collapse" data-target="#slide-modal" ng-click="ctrl.cancel()"><i class="fas fa-chevron-circle-left"></i></button>
+  </form>
+  <div class="row" style="padding-top:8px;">
+    <div class="col-sm-11">
+      <div class="list-group">
+        <a href="#" class="list-group-item active text-xs-center">
+           Search for.. &nbsp;"<span ng-bind="ctrl.search || 'Root Category'"></span>"
+        </a>
+        <li class="list-group-item text-xs-center list-group-item-action" ng-repeat="kv in ctrl.kvs | searchFor:ctrl.search" ng-click="ctrl.selectKey(kv)">
+          <i ng-class="ctrl.tag(kv.path)" style="min-width:1.2em;padding-right:4px"></i>
+          {{ kv.key }}
+        </li>
+      </div>
+    </div>
+    <div class="col-sm-1"> <!-- TODO: Incomplete layout, wrong focus. -->
+      <div id="slide-modal" class="collapse in width">
+        <div class="list-group" style="width:300px;">
+          <li class="list-group-item text-xs-center list-group-item-action"
+              data-toggle="collapse" data-target="#slide-modal" title="{{ kv.path }}" ng-repeat="kv in ctrl.shortcuts" ng-click="ctrl.doSearch(kv.path)">
+            <i ng-class="ctrl.tag(kv.path)" style="min-width:1.2em;padding-right:4px"></i>{{ kv.name }}
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endangularjs %}
+<style>
+#kvs-list .list-group {
+    max-height: 520px;
+    margin-bottom: 8px;
+    overflow-y:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+#slide-modal.collapse {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: 320ms ease;
+  transition: 320ms ease;
+}
+#slide-modal.collapse:not {
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
+  -webkit-transition: 320ms ease;
+  transition: 320ms ease;
+}
+</style>
+{% kvs_tags %}

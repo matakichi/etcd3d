@@ -1,0 +1,73 @@
+<div ng-controller="NavCtrl as nav">
+<nav class="navbar navbar-expand-lg navbar-toggleable-md navbar-dark bg-dark bg-faded">
+  <a class="navbar-brand" href="#">etcd3</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="true" aria-label="Navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="nav-content">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" ng-class="{active: nav.active('dashboard')}">
+        <a class="nav-link" ui-sref="dashboard"><span class="fab fa-fw fa-app-store"></span>Dashboard</a>
+      </li>
+      <li class="nav-item" ng-class="{active: nav.active('kvs')}">
+        <a class="nav-link" ui-sref="kvs"><span class="fas fa-fw fa-boxes"></span>KvS</a>
+      </li>
+      <li class="nav-item" ng-class="{active: nav.active('graph')}">
+        <a class="nav-link" ui-sref="graph"><span class="fab fa-fw fa-connectdevelop"></span>Graph(ALPHA)</a>
+      </li>
+      <li class="nav-item" ng-class="{active: nav.active('healthy')}">
+        <a class="nav-link" ui-sref="healthy"><span class="fas fa-fw fa-cube"></span>Store healthy</a>
+      </li>
+	    <li class="dropdown" ng-class="{active: nav.active('auth')}">
+        <a class="nav-link disabled" href="#"><span class="fas fa-fw fa-chess-pawn"></span>Auth</a>
+		    <ul class="dropdown-menu">
+		      <li><a class="disabled" href="#" uib-tooltip="User CURD,and Grants a role.">Users setting</a></li>
+		      <li><a class="disabled" href="#" uib-tooltip="Grants a key to a role.">Role setting</a></li>
+		    </ul>
+	    </li>
+      <li class="nav-item " ng-class="{active: nav.active('settings')}">
+        <a class="nav-link" ui-sref="settings"><span class="fas fa-fw fa-cog"></span>Settings</a>
+      </li>
+      <li class="nav-item" ng-class="{active: nav.active('admin')}">
+<!--        <a class="nav-link" href="{% url 'kvs' %}"><span class="fas fa-fw"></span>Admin</a> -->
+        <a class="nav-link" ui-sref="admin"><span class="fas fa-fw"></span>Admin</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Not Implemented.." aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+</div>
+<style type="text/css">
+nav.navbar ul.navbar-nav a {
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+	margin-left: 1em;
+}
+nav.navbar ul.navbar-nav a::after {
+  content: '';
+  position: absolute;
+  background-color: #0275d8; /* primary-color? */
+  top: 100%;
+  left: 5%;
+  right: 10%;
+  width: 90%;
+  height: 1px;
+  transform: scaleX(0);
+  transition: transform .40s ease;
+}
+nav.navbar ul.navbar-nav a:hover::after {
+  transform: scaleX(1);
+}
+.fa-fw {
+    text-align: center;
+    margin-right:3px;
+    width: 1.25em;
+}
+nav.navbar .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+</style>

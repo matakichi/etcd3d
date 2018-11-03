@@ -1,0 +1,24 @@
+{% extends 'js/view_template.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block subtitle %}
+    Store Healthy. (Please refresh to load the latest..)
+{% endblock %}
+
+{% load djng_tags %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-8">
+      {% include "dashboard/health/leader.html" %}
+      {% include "dashboard/health/members.html" %}
+  </div>
+  <div class="col-sm-4">
+      {% include "dashboard/health/tree.html" %}
+  </div>
+</div>
+<div class="w-75">
+</div>
+{% endblock %}
+{% block extra_javascript %}
+{% endblock extra_javascript %}

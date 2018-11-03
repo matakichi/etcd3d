@@ -1,0 +1,45 @@
+{% extends 'js/view_template.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block subtitle %}
+    Dashboard Settings.
+{% endblock %}
+
+{% load djng_tags %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-5">
+    <div id="settingMenu" class="settingMenu">
+      <div class="card mb-0">
+        <div class="card-header collapsed" data-toggle="collapse" href="#bodyShortcut">
+          <a class="card-title">
+          Shortcut's
+          </a>
+        </div>
+        <div id="bodyShortcut" class="collapse" aria-labelledby="shortcuts" data-parent="#settingMenu">
+          <div class="card-body">
+          {% include "dashboard/settings/shortcut_lists.html" %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    {% include "dashboard/settings/shortcut_form.html" %}
+  </div>
+</div>
+{% endblock %}
+{% block extra_javascript %}
+<style type="text/css">
+.settingMenu .card-header:after {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f106';
+  float: right;
+}
+.settingMenu .card-header.collapsed:after {
+  content: '\f104';
+}
+</style>
+{% endblock extra_javascript %}

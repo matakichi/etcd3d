@@ -1,0 +1,37 @@
+<style>
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+.node text {
+  font: 12px;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+</style>
+{% load djng_tags %}
+{% angularjs %}
+<div id="graph-container">
+  <div class="float-left">
+    <div class="form-inline">
+      <label class="form-control input-normal" style="width:13em" ng-bind="ctrl.current_path" id="currentPath"></label>
+      <button class="btn btn-xs btn-info" uib-tooltip="Copy Clip" ng-click="ctrl.copyClipBoard()"><i class="fas fa-clipboard"></i></button>
+    </div>
+  </div>
+  <div class="float-right">
+    <button class="btn btn-xs btn-info" ng-click="ctrl.expandAll()" uib-tooltip="Expand All">
+      <i class="fas fa-folder-open"></i></button>
+    <button class="btn btn-xs btn-info" ng-click="ctrl.collapseAll()" uib-tooltip="Collapse All">
+      <i class="fas fa-folder"></i></button>
+    <button class="btn btn-xs btn-secondary" ng-click="ctrl.treeBuild()">
+      <i class="fas fa-sync" ng-class="{'fa-spin': ctrl.refreshing}"></i></button> <!-- TODO: Invalid refresh svg. -->
+  </div>
+  <div class="treeMap" style="width:960px;height:580px"></div>
+</div>
+{% endangularjs %}

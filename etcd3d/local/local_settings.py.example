@@ -1,0 +1,113 @@
+# -*- coding: utf-8 -*-
+
+import os
+
+#DEBUG = True
+
+#SECRET_KEY =
+
+#ALLOWED_HOSTS = ['*']
+
+"""
+etcd3Dashboard Web app settings.
+"""
+# Bootstrap UI
+# https://django-bootstrap.readthedocs.io/en/latest/
+
+#BOOTSTRAP4 = {
+#    'base_url': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/',
+#    'css_url': {
+#        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
+#        'integrity': 'sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4',
+#        'crossorigin': 'anonymous',
+#    },
+#    'jquery_url': {
+#        'url': 'https://code.jquery.com/jquery-3.3.1.min.js',
+#        'integrity': 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=',
+#        'crossorigin': 'anonymous',
+#    },
+#    'javascript_url': {
+#        'url': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js',
+#        'integrity': 'sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm',
+#        'crossorigin': 'anonymous',
+#    },
+#    'include_jquery': True,
+#}
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/1.8/topics/i18n/
+
+#LANGUAGE_CODE = 'en-us'
+
+#TIME_ZONE = 'UTC'
+
+#USE_I18N = True
+
+#USE_L10N = True
+
+#USE_TZ = True
+
+
+#LOGGING = {
+#    'version': 1,
+#    'formatters': {
+#        'debug': {
+#            'format': ' '.join([
+#                "%(asctime)s.%(msecs)03d",
+#                "%(process)d",
+#                "%(levelname)s",
+#                "%(name)s",
+#                "%(funcName)s",
+#                "%(pathname)s:%(lineno)d",
+#                "[-]",
+#                "%(message)s",
+#            ])
+#        },
+#    },
+#    'handlers': {
+#        'console': {
+#            'level': 'DEBUG',
+#            'class': 'logging.StreamHandler',
+#            'formatter': 'debug'
+#        },
+#    },
+#    'loggers': {
+#        'app': {
+#            'handlers': ['console'],
+#            'level': 'DEBUG',
+#        },
+#    },
+#}
+
+## Dashboard fonts
+## https://www.911fonts.com/
+
+#FONTS = (
+#    'Comic Sans MS',
+#    'fantasy',
+#    'Verdana',
+#)
+
+
+"""
+etcd3Dashboard kvs settings
+"""
+
+#ETCD_SERVICE = {
+#    'version': 3,
+#    'host': 'etcd',
+#    'port': 2379,
+#}
+
+#ETCD_DASHBOARD = {
+#    'settings_path': os.path.join('.dashboard', 'settings',)
+#}
+
+#ETCD_STORE = {
+#    'shortcut_path': os.path.join(ETCD_DASHBOARD['settings_path'], 'sc'),
+#}
+
+#KVS_TAG_ICONS = [
+#    {'tag': 'traefik', 'font': 'Font Awesome 5 Brands', 'icon': 'f1d6'}
+#]
