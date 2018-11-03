@@ -39,6 +39,9 @@ $ pip install -r requirements.txt
 $ npm install
 $ python manager.py runserver
 ```
+or
+
+Used pipenv & npm install
 
 ### Configuration
 
