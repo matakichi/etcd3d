@@ -4,7 +4,7 @@
   "description": "etcd3d is a simply dashboard of key-value store `etcd`.",
   "main": "index.js",
   "dependencies": {
-    "angular": ">=1.7.9",
+    "angular": ">=1.8.3",
     "angular-ui-bootstrap": "^2.5.6"
   },
   "devDependencies": {},
